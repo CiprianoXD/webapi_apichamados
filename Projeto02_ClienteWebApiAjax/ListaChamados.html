@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <input type="button"  value="Ver Chamados" id="lerChamados"  />  
+    </div>
+    <div>
+        <ul id="chamados">
+        </ul>
+    </div>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+             //Buscando Chamados
+            $("#lerChamados").click(function () {
+                $.ajax({
+                    dataType: 'json', 
+                    url: 'http://localhost:49773/api/chamados',
+                    method: 'GET',
+                    success: function (resposta) {
+                        $("#chamados").html('Lista de Chamados:');
+                        $.each(resposta, function (k, v) {
+                            $("#chamados").append('<li>' + v.Descricao + '</li>')
+                        });
+                    }, 
+                    error: function (erro) {
+                        alert('Erro: ' + erro.responseText);
+                    }
+                }); 
+            });
+        });
+    </script>
+</body>
+</html>

@@ -6,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Projeto01_ApiChamados.Controllers
 {
     public class ChamadosController : ApiController
     {
 
-
+        [EnableCors (origins:"*" , methods:"*", headers:"*")]
         //HTTP GET - Lista todos os Chamados
         public IEnumerable<Chamado> GetChamados()
         {

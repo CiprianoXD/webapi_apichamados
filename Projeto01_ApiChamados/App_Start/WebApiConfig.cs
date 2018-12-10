@@ -10,7 +10,7 @@ namespace Projeto01_ApiChamados
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            config.EnableCors();
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -23,6 +23,8 @@ namespace Projeto01_ApiChamados
             );
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.Add(config.Formatters.JsonFormatter);
+
+
         }
     }
 }

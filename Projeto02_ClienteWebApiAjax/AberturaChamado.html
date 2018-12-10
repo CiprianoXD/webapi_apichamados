@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <h1>Novo Chamado</h1>
+    <div>
+        <label>Data:</label><br />
+        <input type="date" id="data" pattern="yyyy-MM-dd" /> <br />
+
+        <label>Cpf:</label><br />
+        <input type="text" id="cpf" /> <br />
+
+        <label>Assunto:</label><br />
+        <select id="assunto">
+            <option>Sugestões</option>
+            <option>Reclamações</option>
+            <option>Elogios</option>
+        </select>
+
+        <label>Descrição:</label><br />
+        <textarea id="descricao" rows="5" cols="20"></textarea>
+
+        <input type="button" id="incluirChamado" value="Incluir Chamado" />
+    </div>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#incluirChamado").click(function () {
+                $.ajax({
+                    url: 'http://localhost:49773/api/chamados',
+                    method: 'POST',
+                    data: {
+                        Data: $("#data").val(),
+                        CpfCliente: $("#cpf").val(),
+                        Assunto: $("#assunto").val(),
+                        Descricao: $("#descricao").val()
+                    },
+                    success: function (resposta) {
+                        alert('Dados inseridos');
+                    },
+                    error: function (erro) {
+                        alert('Erro: ' + erro.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
